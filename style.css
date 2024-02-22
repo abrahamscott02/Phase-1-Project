@@ -1,0 +1,20 @@
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: gray;
+}
+
+h2 {
+    text-align: center; /* Centers the text horizontally */
+    margin-top: 0; /* Removes any default margin */
+    margin-bottom: 20px; /* Adds some space below the heading */
+}
+
+.container{
+    width: 500px;
+    padding: 100px;
+    border-radius: 20px;
+    background: white;
+}
