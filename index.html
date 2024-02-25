@@ -1,24 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abraham's Currency Converter Application</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <h2>Currency Converter</h2>
-        <!-- 'Enter amount' input field  -->
-        <input type="numbers" id="amountInput" placeholder="Enter amount" required>
-        <!-- fromCurrency dropdown -->
-        <select id="fromCurrency">FROM</select>
-        <!-- toCurrency dropdown -->
-        <select id="toCurrency">TO</select>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Abraham's Currency Converter Application</title>
 
-        <button id="converterBtn">Convert</button>
-        <div id="results"></div>
-</div>
-    <script src="index.js"></script>  
-</body>
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+
+        <!-- Page content-->
+        <div class="container">
+            <h1 class="h3 mb-3 mt-3 fw-normal text-center">Currency Converter</h1>
+            <form class="form grid gap-3">
+                <div class="row">
+                    <div class="p-2 col-sm">
+                        <!-- 'Enter amount' input field  -->
+                        <input type="numbers" id="amountInput" class="form-control" placeholder="Enter amount" required />
+                    </div>
+                    <div class="p-2 col-sm">
+                        <!-- fromCurrency dropdown -->
+                        <select id="fromCurrency" class="form-select">
+                            <option selected="selected">SELECT FROM CURRENCY...</option>
+                            <option value="usd">USD</option>
+                            <option value="cad">CAD</option>
+                            <option value="eur">EUR</option>
+                        </select>
+                    </div>
+                    <div class="p-2 col-sm">
+                        <!-- toCurrency dropdown -->
+                        <select id="toCurrency" class="form-select">
+                            <option selected="selected">SELECT TO CURRENCY...</option>
+                            <option value="usd">USD</option>
+                            <option value="cad">CAD</option>
+                            <option value="eur">EUR</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row p-2 ">
+                    <button id="converterBtn" class="w-99 btn btn-lg btn-primary" type="submit">Convert</button>
+                </div>
+                <div class="row p-2">
+                    <div id="results"></div>
+                </div>
+            </form>
+        </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- JS-->
+        <script src="js/index.js"></script>
+    </body>
 </html>

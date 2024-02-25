@@ -6,8 +6,6 @@ const toCurrency = document.getElementById('toCurrency');
 const converterBtn = document.getElementById('converterBtn');
 const resultsDiv = document.getElementById('results');
 
-let currenciesArray = [];
-
 function fetchCurrencyData(typeOfCurrency){
     const apiUrl = `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${typeOfCurrency}.json`;
  
@@ -19,13 +17,8 @@ function fetchCurrencyData(typeOfCurrency){
         return res.json();
     })
     .then((data) => {
-        const currencies = object.keys(data);
-        currenciesArray = currencies;
-
-        currencies.forEach(currency => {
-            const option1 = document.createElement('option');
-            
-        })
+        const currencies = object.currencies(data);
+        console.log(currencies);
     })
 
 }
