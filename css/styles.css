@@ -10,6 +10,18 @@
  * Copyright 2011-2022 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+
+ .highlight-red {
+  outline: 2px solid red;
+}
+
+#results {
+  text-align: center; /* Center the text horizontally */
+  margin: 0 auto; /* Center the div itself horizontally */
+  width: 50%; /* Adjust the width as needed */
+  font-size: 24px;
+}
+
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
