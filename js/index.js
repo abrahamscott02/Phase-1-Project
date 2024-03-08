@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         fetch(apiUrl)
             .then((res) => {
-                if (!res.ok) {
+                if (!res.ok) {  
                     throw new Error('Issue with the Networks response');
                 }
                 return res.json();
