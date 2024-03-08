@@ -8,9 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
     let currencyRates = [];
 
     function fetchCurrencyData() {
-        const apiUrl = 'http://localhost:3000/currencies';
+        // const apiUrl = 'db.json';
 
-        fetch(apiUrl)
+        fetch('/db.json')
             .then((res) => {
                 if (!res.ok) {  
                     throw new Error('Issue with the Networks response');
@@ -18,8 +18,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 return res.json();
             })
             .then((data) => {
-                const currencyData = data;
-                currencyRates.push(...currencyData); // Push each currency object individually
+                const currencyData = data.currencies;
+                currencyRates.push(...currencyData); // Push each currency object individually, using the spread operator.
                 
                 currencyRates.forEach(currencyRate => {
                     // Options for the 'fromCurrency' Dropdown
