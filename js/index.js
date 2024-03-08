@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let currencyRates = [];
 
     function fetchCurrencyData() {
-        const apiUrl = `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/eur.json`;
+        const apiUrl = 'http://localhost:3000/currencies';
 
         fetch(apiUrl)
             .then((res) => {
@@ -18,21 +18,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 return res.json();
             })
             .then((data) => {
-                const currencyData = data.eur;
-                currencyRates = Object.entries(currencyData).map(([currency, rate]) => ({ currency, rate }));
-                console.log(currencyRates);
-
+                const currencyData = data;
+                currencyRates.push(...currencyData); // Push each currency object individually
+                
                 currencyRates.forEach(currencyRate => {
                     // Options for the 'fromCurrency' Dropdown
                     const option1 = document.createElement('option');
-                    option1.value = currencyRate.currency; //  Set the value of the option to the currency
-                    option1.textContent = currencyRate.currency; // Set the text content of the option to the currency
+                    option1.value = currencyRate.code; //  Set the value of the option to the currency code
+                    option1.textContent = currencyRate.code; // Set the text content of the option to the currency code
                     fromCurrencySelect.appendChild(option1); // Appending the option to the 'fromCurrency' Dropdown
 
                     // Options for the 'toCurrency' Dropdown
                     const option2 = document.createElement('option');
-                    option2.value = currencyRate.currency;
-                    option2.textContent = currencyRate.currency;
+                    option2.value = currencyRate.code;
+                    option2.textContent = currencyRate.code;
                     toCurrencySelect.appendChild(option2);
                 });
 
@@ -41,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     option.textContent = option.textContent.toUpperCase();
                 });
 
-                fromCurrencySelect.querySelectorAll('option:not(:first-child)').forEach(option => {
+                toCurrencySelect.querySelectorAll('option:not(:first-child)').forEach(option => {
                     option.textContent = option.textContent.toUpperCase();
                 });
 
@@ -51,11 +50,13 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
 
-    // Adding the "click" event listener to the "amountInput" box
+    // Adding a "focus" event listener to the "amountInput" field to highlight the input box in red when no value is entered.
     amountInput.addEventListener('focus', function() {
         amountInput.classList.add('highlight-red');
     });
 
+    // Adding an "input" event listener to remove the red highlight from the input field when it is no longer empty. 
+    // Note: Trim() is used to remove any spaces from the beginning or end of the string, so to not mess up the if statement.
     amountInput.addEventListener('input', function() {
         if (amountInput.value.trim() !== ''){
             amountInput.classList.remove('highlight-red');
@@ -66,19 +67,25 @@ document.addEventListener('DOMContentLoaded', function() {
     converterBtn.addEventListener('click', function(event) {
         event.preventDefault();
 
+        // parseFloat attempts to convert the string into a floating point number (ie.. 12y36 will return 12 instead of throwing an error)
         const amount = parseFloat(amountInput.value);
         const fromCurrency = fromCurrencySelect.value; 
         const toCurrency = toCurrencySelect.value;
 
-        const fromRate = currencyRates.find(rate => rate.currency === fromCurrency)?.rate;
-        const toRate = currencyRates.find(rate => rate.currency === toCurrency)?.rate;
+        // Find the currency object for the fromCurrency
+        const fromCurrencyObj = currencyRates.find(currency => currency.code === fromCurrency);
 
-        const convertedAmount = (amount / fromRate) * toRate;
+        // Retrieve the exchange rate for the toCurrency from the fromCurrencyObj
+        const toRate = fromCurrencyObj.values[toCurrency];
 
+        // Calculate the converted amount
+        const convertedAmount = amount * toRate;
+
+        // toFixed(2) will keep the converted result to 2 decimal places.
         const roundedAmount = convertedAmount.toFixed(2);
         resultsDiv.innerHTML = `${amount} ${fromCurrency} = ${roundedAmount} ${toCurrency}`;
     });
 
-    // Fetching currency data initially for 'fromCurrency' dropdown
-    fetchCurrencyData(); // You can set the default currency here
+
+    fetchCurrencyData();
 });
