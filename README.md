@@ -33,5 +33,5 @@ Resourses
 - Traversy Media (youtube)
 - https://developer.mozilla.org
 - Ada
-- ChatGBT
+- ChatGPT
 
