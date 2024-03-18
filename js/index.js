@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then((data) => {
                 const currencyData = data.currencies;
-                currencyRates.push(...currencyData); // Push each currency object individually, using the spread operator.
+                currencyRates = [...currencyData]; // Push each currency object individually, using the spread operator.
                 
                 currencyRates.forEach(currencyRate => {
                     // Options for the 'fromCurrency' Dropdown
@@ -35,21 +35,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     toCurrencySelect.appendChild(option2);
                 });
 
-                // Capitalize all entries in the dropdowns
-                fromCurrencySelect.querySelectorAll('option:not(:first-child)').forEach(option => {
-                    option.textContent = option.textContent.toUpperCase();
-                });
-
-                toCurrencySelect.querySelectorAll('option:not(:first-child)').forEach(option => {
-                    option.textContent = option.textContent.toUpperCase();
-                });
-
+                let x = 1
             })
             .catch((error) => {
                 console.error(error);
             });
     }
 
+    console.log(x);
+    
     // Adding a "focus" event listener to the "amountInput" field to highlight the input box in red when no value is entered.
     amountInput.addEventListener('focus', function() {
         amountInput.classList.add('highlight-red');
