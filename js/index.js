@@ -7,7 +7,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let currencyRates = [];
 
-        fetch('/db.json')
+    function fetchCurrencyData() {
+        const apiUrl = 'http://localhost:3000/currencies';
+
+        fetch(apiUrl)
             .then((res) => {
                 if (!res.ok) {  
                     throw new Error('Issue with the Networks response');
