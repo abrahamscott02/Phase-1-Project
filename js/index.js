@@ -7,9 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let currencyRates = [];
 
-    function fetchCurrencyData() {
-        // const apiUrl = 'db.json';
-
         fetch('/db.json')
             .then((res) => {
                 if (!res.ok) {  
@@ -34,16 +31,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     option2.textContent = currencyRate.code;
                     toCurrencySelect.appendChild(option2);
                 });
-
-                let x = 1
             })
             .catch((error) => {
                 console.error(error);
             });
-    }
 
-    console.log(x);
-    
     // Adding a "focus" event listener to the "amountInput" field to highlight the input box in red when no value is entered.
     amountInput.addEventListener('focus', function() {
         amountInput.classList.add('highlight-red');
@@ -79,7 +71,4 @@ document.addEventListener('DOMContentLoaded', function() {
         const roundedAmount = convertedAmount.toFixed(2);
         resultsDiv.innerHTML = `${amount} ${fromCurrency} = ${roundedAmount} ${toCurrency}`;
     });
-
-
-    fetchCurrencyData();
 });
