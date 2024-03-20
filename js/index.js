@@ -15,9 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 return res.json();
             })
             .then((data) => {
-                const currencyData = data.currencies;
-                currencyRates = [...currencyData]; // Push each currency object individually, using the spread operator.
-                
+                const currencyData = data;
+                currencyRates = currencyData; // Push each currency object individually, using the spread operator.
+
                 currencyRates.forEach(currencyRate => {
                     // Options for the 'fromCurrency' Dropdown
                     const option1 = document.createElement('option');
@@ -37,22 +37,20 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
     // Adding a "focus" event listener to the "amountInput" field to highlight the input box in red when no value is entered.
-    amountInput.addEventListener('focus', function() {
+    amountInput.addEventListener('focus', () => {
         amountInput.classList.add('highlight-red');
     });
 
     // Adding an "input" event listener to remove the red highlight from the input field when it is no longer empty. 
     // Note: Trim() is used to remove any spaces from the beginning or end of the string, so to not mess up the if statement.
-    amountInput.addEventListener('input', function() {
+    amountInput.addEventListener('input', () => {
         if (amountInput.value.trim() !== ''){
             amountInput.classList.remove('highlight-red');
         }
     });
 
     // Adding the "submit" event listener to the "convertBtn"
-    converterBtn.addEventListener('click', function(event) {
-        event.preventDefault();
-
+    converterBtn.addEventListener('click', () => {
         // parseFloat attempts to convert the string into a floating point number (ie.. 12y36 will return 12 instead of throwing an error)
         const amount = parseFloat(amountInput.value);
         const fromCurrency = fromCurrencySelect.value; 

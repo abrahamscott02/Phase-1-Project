@@ -9,11 +9,15 @@ Features
 - Calculates and displays the converted amount based on the selected currencies and exchange rates.
 - Highlights input field in red when empty, providing visual feedback to the user.
 
+Possible Functionality that could be added
+
+- Currency swap button
+
 Languages Used
 
-HTML
-CSS
-JavaScript
+- HTML
+- CSS
+- JavaScript
 
 Usage
 
